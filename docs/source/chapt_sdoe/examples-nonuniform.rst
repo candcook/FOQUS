@@ -113,7 +113,7 @@ Here is the process for generating NUSF designs for this problem:
    
    Example NUSF2 choice of file for candidate set
     
-2. Next, by selecting **View** and then **Plot** it is possible to see the pairwise scatterplot of all of candidate points. Note that in this file there are 6 columns - the Label column will be used to identify which of the candidates are selected in the constructed designs. The Weights column summarizes how desirable a candidate point is by its proximity to the anticipated optimum location. 
+2. Next, by selecting **View** and then **Plot** it is possible to see the pairwise scatterplot of all candidate points. Note that in this file there are 6 columns - the Label column will be used to identify which of the candidates are selected in the constructed designs. The Weights column summarizes how desirable a candidate point is by its proximity to the anticipated optimum location. Larger weights assigned to candidate points indicate that they are closer to the anticipated optimum location, and thus are more desirable to include in a potential design.
 
 .. figure:: figs/NUSFex2_columns.png
    :alt: Home Screen
@@ -123,7 +123,7 @@ Here is the process for generating NUSF designs for this problem:
    
 3. Next, click on **Confirm** to advance to the **Ensemble Aggregation** Window, and the click on **Non-Uniform Space Filling** to advance to the second SDOE screen, where particular choices about the design can be made. On the second screen, the first choice for **Optimality Method Selection** is automatic, since the non-uniform space filling designs only use the **Maximin** criterion.
 
-The next choice is to choose the **Scaling Method**, where the choices are **Direct** and **Ranked**. The default is to use the Direct scaling which translates the weights provided with a linear transformation so that they lie in the range 1 to whatever **MWR** value is selected below. For this example, we will explore what difference the choice of the scaling method makes on the resulting designs, but be begin by choosing the option for Direct scaling.
+The next choice is to choose the **Scaling Method**, where the choices are **Direct** and **Ranked**. The default is to use the Direct scaling which translates the weights provided with a linear transformation so that they lie in the range 1 to **MWR**, where MWR refers to the Maximum Weight Ratio selected below. For this example, we will explore what difference the choice of the scaling method makes on the resulting designs, but we begin by choosing the option for Direct scaling.
 
 .. figure:: figs/NUSFex2_Choices1.png
    :alt: Home Screen
@@ -135,7 +135,7 @@ Next select the **Design size**, where here we have decided to construct a desig
 The choice of the **Maximum Weight Ratio** or **MWR** for this example reflects that we wish to have a design that is still space filling throughout the input region, but with a slightly emphasized concentration near the anticipated optimum. Hence we will select small values that are not too far away from 1 (which represents a uniform space filling design). Because, it is not always easy to judge the impact of the choice of MWR value,  we recommend constructing several designs with different MWR values and then comparing the results to see which value is best suited for the experiment to be run.  
 In this case, we select to generate 2 designs, with **MWR** values of 2 and 5. This should provide some variety of designs to choose from after they have been constructed.
 
-4. Once the choices for the design have been specified, click on the **Test SDOE** button to estimate the time taken for creating the designs. For the computer on which this example was developed, if we ran 30 random starts, it is estimated that the algorithm would take 15:08 minutes to generate the 2 designs with MWR values of 2 and 5. Note that the timing changes linearly, so using 40 random starts would take twice as long as using 20 random starts. Recall that the choice of the number of random starts involves a trade-off between getting the designs created quickly and the quality of the designs. For many applications, we would expect that using at lest 30 random starts would produce designs that are of sufficient quality.
+4. Once the choices for the design have been specified, click on the **Test SDOE** button to estimate the time taken for creating the designs. For the computer on which this example was developed, if we ran 30 random starts, it is estimated that the algorithm would take 15:08 minutes to generate the 2 designs with MWR values of 2 and 5. Note that the timing changes linearly, so using 40 random starts would take twice as long as using 20 random starts. Recall that the choice of the number of random starts involves a trade-off between getting the designs created quickly and the quality of the designs. For many applications, we would expect that using at least 30 random starts would produce designs that are of sufficient quality.
 
 .. figure:: figs/NUSFex2_timing.png
    :alt: Home Screen
@@ -147,7 +147,7 @@ In this case, we select to generate 2 designs, with **MWR** values of 2 and 5. T
    
 6. To examine each of the created designs, select **View** and choose the columns to be included, and click **Plot**. For this example we included only the 4 input columns to keep each plot to a moderate size. Note that two plots are created for each design. The first is the **Closest Distance by Weight (CDBW) plot**, and the second is the more familiar **pairwise scatterplot** of the created design.
 
-Recall that there are two portions to the CDBW plot. The lower section shows a histogram of the weights in the candidate set. Note that the range of values goes from 1 to the MWR value selected. For the figure below, we are looking at a design created with a MWR value of 2. The shape of the histogram shows what values were available to be selected from. The top portion of the plot, has a vertical line for each of the design points selected (in this case 10 vertical lines for 10 design points). The location of each vertical line shows the weight for the selected design point. This allows the user to see how much emphasis was placed on getting the larger weight values into the design.
+Recall that there are two portions to the CDBW plot. The lower section shows a histogram of the weights in the candidate set. Note that the range of values goes from 1 to the MWR value selected. For the figure below, we are looking at a design created with an MWR value of 2. The shape of the histogram shows what values were available to be selected from. The top portion of the plot, has a vertical line for each of the design points selected (in this case 10 vertical lines for 10 design points). The location of each vertical line on the x-axis shows the weight for the selected design point. In addition, the length of the line shows how far away each point is from its nearest neighbor. In general, the design points with the larger weights have neighbors that are closer to it, than those with smaller weights. Therefore, this plot allows the user to see how much emphasis was placed on getting the larger weight values into the design and gives a sense of the relative proximity of points for different weight values.
 
 .. figure:: figs/NUSFex2_CDBW_MWR_2.png
    :alt: Home Screen
@@ -155,23 +155,23 @@ Recall that there are two portions to the CDBW plot. The lower section shows a h
    
    Ex NUSF2 Closest Distance by Weight (CDBW) plot for the constructed 10 run design with MWR values of 2
    
-In looking at the location of the vertical lines in the top of the CDBW plot, we see that some locations in the input space have been chosen across the majority of the range of the weight values. This reflects the relatively small MWR of 2 value that was selected.
+In looking at the location of the vertical lines in the top of the CDBW plot, we see that the chosen design points cover the majority of the weights in the candidate set. In addition, there is not that much change in the length of the vertical lines across all of the design points, indicating that the nearest neighbor for each point is relatively consistent. Both of these features reflect the relatively small MWR value of 2 that was selected.
 
-The second plot is the more familiar scatterplot of the design points. This shows the location of the 10 selected design points in the 4 dimensional input space. The points look to cover much the same region as the overall candidate points, but with a slight concentration of points closer to the anticipated optimum. 
+The second plot is the more familiar scatterplot of the design points. This shows the location of the 10 selected design points in the 4-dimensional input space. The points look to cover much the same region as the overall candidate points, but with a slight concentration of points closer to the anticipated optimum. 
 
 .. figure:: figs/NUSFex2_Scatter_MWR_2.png
    :alt: Home Screen
    :name: fig.NUSFex2_Scatter_MWR_2
    
-   Ex NUSF2 pairwise scatterplot for the constructed 10 run design with MWR values of 2
+   Ex NUSF2 pairwise scatterplot for the constructed 10 run design with MWR of 2
 
-7. Next we consider, reproducing the same designs, but now selecting the **Ranked** scaling option to see how this changes the results of the constructed design. We repeat the early steps for the SDoE module with the same file for the candidate set, "CCSIex.csv", and all of the choices for the design the same, except this time we choose the **Scaling Method**, as **Ranked**. 
+7. Next we reproduce the same designs, but now select the **Ranked** scaling option to see how this changes the results of the constructed design. We repeat the early steps for the SDoE module with the same file for the candidate set, "CCSIex.csv", and all of the choices for the design remain the same, except this time we choose **Ranked** for the **Scaling Method**. 
 
 .. figure:: figs/NUSFex2_Choices2.png
    :alt: Home Screen
    :name: fig.NUSFex2-Choices2
    
-   Ex NUSF2 Choice of settings for generating NUSF designs with Ranked for the Scaline Method
+   Ex NUSF2 Choice of settings for generating NUSF designs with Ranked for the Scaling Method
    
 We again construct designs with MWR values of 2 and 5. The time required to generate these designs will be approximately the same as for the other choice of scaling method.
 
@@ -184,10 +184,11 @@ To compare the designs, we can examine the CDBW plots for all 4 of the construct
    Ex NUSF2 Comparison of the CDBW plots for designs with MWR values of 2 and 5 with both Direct and Ranked scaling
 
 To understand the differences between the choices, we note the following points.
-(a) Not that for the top row of CDBW plots for those associated with the Direct scaling, the shape of the histograms for the candidate set are the same as for the original unscaled weights provided in the candidate set. In this case, we have a skewed distribution with very few small weights. 
-(b) In contrast, the bottom row of CDBW plots are for the Ranked scaling, and the shape of the histogram is quite different from what was obtained with the Direct weighting. As is typical of the the Ranked scaling, we obtain an even histogram with nearly the same count in each bar. 
+(a) Note that for the top row of CDBW plots (those associated with the Direct scaling), the shape of the histograms for the candidate set are the same as for the original unscaled weights provided in the candidate set. For this example, we have a skewed distribution with very few small weights. 
+(b) In contrast, for the bottom row of CDBW plots (for the Ranked scaling), the shape of the histogram is quite different from what was obtained with the Direct scaling. As is typical of the Ranked scaling, we obtain an even histogram with nearly the same count in each bar. 
 (c) Next when we compare the left (MWR=2) and right (MWR=5) plots, we see that the left plots have a more evenly spread set of weights selected across the entire range of values. For the MWR=5 plots, we see that there is a greater concentration of larger weights that have been selected.
-(d) To select the design that is best suited for the goal of the experiment, it is helpful to think about how non-uniform the spread of points should be, and how big are the gaps where no runs will be collected. The 4 sets of pairwise scatterplots can helpful to see where the gaps exist. The scatterplots are slightly harder to interpret as the number of factors increases, but the histograms for each input can give a good idea of how the runs are spread across the range of each input.
+(d) When we examine the length of the vertical lines across all of the different design choices, we see that the largest distance between a design point and its nearest neighbor varies considerably. The MWR=2 design using Ranked scaling, has the greatest distance between design points for the design point with the smallest weight (Note the differences in scales for the y-axis on all of the plots). Both the MWR plots (for both the Direct and Ranked scalings) have smaller distances for nearest neighbor distances for the majority of the design points.
+
 
 .. figure:: figs/NUSFex2_compareScatter.png
    :alt: Home Screen
@@ -195,3 +196,6 @@ To understand the differences between the choices, we note the following points.
    
    Ex NUSF2 Comparison of the pairwise scatterplots for designs with MWR values of 2 and 5 with both Direct and Ranked scaling
    
+To select the design that is best suited for the goal of the experiment, it is helpful to think about how non-uniform the spread of points should be, and how big are the gaps where no runs will be collected. The 4 sets of pairwise scatterplots can helpful to see where the gaps exist. The scatterplots are slightly harder to interpret as the number of factors increases, but the histograms for each input (along the diagonal) can give a good idea of how the runs are spread across the range of each input.
+
+Based on a comparison of the CDBW and scatterplots for the different created designs, the experimenter can select a suitable design and understand some of its characteristics.
