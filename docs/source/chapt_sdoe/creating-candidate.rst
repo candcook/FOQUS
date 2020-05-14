@@ -23,7 +23,7 @@ column names) and represent data that have already been collected. The algorithm
 points in different locations from where data have already been obtained, while filling the input space around those
 locations.
 
-Both the **Candidate** and **History** files should be .csv files that has the first row as the Column heading. The
+Both the **Candidate** and **History** files should be .csv files that have the first row as the Column heading. The
 Input columns should be numeric. Additional columns are allowed and can be identified as not necessary to the design
 creation at a later stage.
 
